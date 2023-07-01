@@ -13,7 +13,7 @@ services:
     command: -p 5433
 
   backend:
-    build: ../backend
+    build: ../backend/foodgram
     volumes:
       - ../static/:/app/static/
       - ../media/:/app/media/recipes/
