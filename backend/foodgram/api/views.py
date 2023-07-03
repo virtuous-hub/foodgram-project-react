@@ -50,7 +50,8 @@ class RecipeViewSet(viewsets.ModelViewSet, AddRemoveMixin):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
+    @action(detail=False, methods=['get'],
+            permission_classes=[IsAuthenticated])
     def download_shopping_cart(self, request):
         ingredients = IngredientInRecipe.objects.filter(
             recipe__shopping_list__user=request.user
@@ -60,7 +61,8 @@ class RecipeViewSet(viewsets.ModelViewSet, AddRemoveMixin):
 
         ingredient_dict = collections.defaultdict(int)
         for ingredient in ingredients:
-            key = (ingredient['ingredient__name'], ingredient['ingredient__measurement_unit'])
+            key = (ingredient['ingredient__name'],
+                   ingredient['ingredient__measurement_unit'])
             ingredient_dict[key] += ingredient['total_amount']
         ingredient_list = [f"{name} - {int(amount)} {measurement_unit}" for
                            (name, measurement_unit), amount in
