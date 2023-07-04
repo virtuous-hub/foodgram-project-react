@@ -202,4 +202,3 @@ class IngredientInRecipe(models.Model):
             f'{self.ingredient.name} :: {self.ingredient.measurement_unit}'
             f' - {self.amount} '
         )
-#
