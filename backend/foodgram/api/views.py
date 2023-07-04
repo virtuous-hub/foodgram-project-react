@@ -60,13 +60,18 @@ class RecipeViewSet(viewsets.ModelViewSet, AddRemoveMixin):
             'ingredient__name', 'ingredient__measurement_unit'
         ).annotate(total_amount=Sum('amount'))
 
-        ingredient_totals: collections.defaultdict[int] = collections.defaultdict(int)
+        ingredient_totals: collections.defaultdict[int] = (
+            collections.defaultdict(int)
+        )
         for ingredient in ingredients:
-            key: Tuple[str, str] = (ingredient['ingredient__name'], ingredient['ingredient__measurement_unit'])
+            key: Tuple[str, str] = (ingredient['ingredient__name'],
+                                    ingredient['ingredient__measurement_unit'])
             ingredient_totals[key] += ingredient['total_amount']
 
-        ingredient_list = [f"{name} - {int(amount)} {measurement_unit}" for (name, measurement_unit), amount in
-                           ingredient_totals.items()]
+        ingredient_list = (
+            [f"{name} - {int(amount)} {measurement_unit}"
+             for (name, measurement_unit), amount in ingredient_totals.items()]
+        )
 
         shopping_cart = f'{request.user.username}, Ваш список ингредиентов:\n'
         shopping_cart += "\n".join(ingredient_list)
@@ -82,7 +87,9 @@ class RecipeViewSet(viewsets.ModelViewSet, AddRemoveMixin):
         permission_classes=[IsAuthenticated]
     )
     def favorite(self, request, pk=None):
-        return self.add_or_remove(request, pk, request.method == 'POST', Favorite)
+        return self.add_or_remove(request, pk,
+                                  request.method == 'POST',
+                                  Favorite)
 
     @action(
         detail=True,
@@ -90,4 +97,6 @@ class RecipeViewSet(viewsets.ModelViewSet, AddRemoveMixin):
         permission_classes=[IsAuthenticated]
     )
     def shopping_cart(self, request, pk=None):
-        return self.add_or_remove(request, pk, request.method == 'POST', ShoppingCart)
+        return self.add_or_remove(request, pk,
+                                  request.method == 'POST',
+                                  ShoppingCart)
