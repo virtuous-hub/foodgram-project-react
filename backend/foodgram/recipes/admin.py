@@ -32,7 +32,6 @@ class RecipeAdmin(admin.ModelAdmin):
             f'{ingredient["name"]} - {ingredient["measurement_unit"]}'
             for ingredient in ingredients
         ])
-
     get_ingredients.short_description = 'Ingredients'
 
 

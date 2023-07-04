@@ -230,3 +230,4 @@ class ShoppingCartSerializer(serializers.ModelSerializer):
         recipe = instance.recipe
         request = self.context.get('request')
         return RecipeShortSerializer(recipe, context={'request': request}).data
+#
