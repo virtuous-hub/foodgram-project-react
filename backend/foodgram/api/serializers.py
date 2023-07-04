@@ -82,18 +82,13 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
             IngredientInRecipe.objects.bulk_create(ingredients)
 
     def create(self, validated_data):
-        image = validated_data.pop('image', None)
+        image = validated_data.pop('image')
         tags = validated_data.pop('tags')
         ingredients = validated_data.pop('ingredients')
 
-        recipe = Recipe.objects.create(**validated_data)
-
-        if image:
-            recipe.image = image
-
+        recipe = Recipe.objects.create(image=image, **validated_data)
         recipe.tags.set(tags)
         self.create_ingredients(recipe, ingredients)
-        recipe.save()
 
         return recipe
 

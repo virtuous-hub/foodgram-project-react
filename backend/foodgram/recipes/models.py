@@ -19,7 +19,7 @@ class Ingredient(models.Model):
         verbose_name='Еденицы измерения'
     )
 
-    class Meta():
+    class Meta:
         verbose_name = 'Ингридиенты'
         verbose_name_plural = 'Ингридиенты'
         constraints = [
@@ -116,12 +116,12 @@ class Recipe(models.Model):
 
     def is_favorited(self, user):
         """ Проверка добавления рецепта в избранное"""
-        favorites = self.favorites.filter(user=user)
+        favorites = self.favorites.filter(user=user).exists()
         return bool(favorites)
 
     def is_in_shopping_cart(self, user):
         """ Проверка добавления рецепта в список покупок"""
-        shopping_list = self.shopping_list.filter(user=user)
+        shopping_list = self.shopping_list.filter(user=user).exists()
         return bool(shopping_list)
 
 
@@ -192,6 +192,10 @@ class IngredientInRecipe(models.Model):
         ordering = ('-id', )
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты рецепта'
+        constraints = [
+            UniqueConstraint(fields=['ingredient', 'recipe'],
+                             name='unique ingredients recipe')
+        ]
 
     def __str__(self):
         return (
