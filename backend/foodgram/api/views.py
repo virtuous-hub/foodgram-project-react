@@ -91,4 +91,3 @@ class RecipeViewSet(viewsets.ModelViewSet, AddRemoveMixin):
     )
     def shopping_cart(self, request, pk=None):
         return self.add_or_remove(request, pk, request.method == 'POST', ShoppingCart)
-#
