@@ -116,13 +116,11 @@ class Recipe(models.Model):
 
     def is_favorited(self, user):
         """ Проверка добавления рецепта в избранное"""
-        favorites = self.favorites.filter(user=user).exists()
-        return bool(favorites)
+        return self.favorites.filter(user=user).exists()
 
     def is_in_shopping_cart(self, user):
         """ Проверка добавления рецепта в список покупок"""
-        shopping_list = self.shopping_list.filter(user=user).exists()
-        return bool(shopping_list)
+        return self.shopping_list.filter(user=user).exists()
 
 
 class FavoriteShoppingCart(models.Model):
