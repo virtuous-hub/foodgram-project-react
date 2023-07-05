@@ -1,9 +1,9 @@
 from django.shortcuts import get_object_or_404
-from recipes.models import Recipe
 from rest_framework import status
 from rest_framework.response import Response
 
 from .serializers import RecipeReadSerializer
+from recipes.models import Recipe
 
 
 class AddRemoveMixin:

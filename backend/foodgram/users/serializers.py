@@ -1,7 +1,7 @@
 from django.contrib.auth.password_validation import validate_password
-from django.shortcuts import get_object_or_404
 from djoser.serializers import (SetPasswordSerializer, UserCreateSerializer,
                                 UserSerializer)
+from django.shortcuts import get_object_or_404
 from rest_framework import serializers, status
 from rest_framework.exceptions import PermissionDenied, ValidationError
 
