@@ -1,6 +1,6 @@
 <h1>praktikum_new_diplom</h1>
 
-![Django-app workflow](https://github.com/virtuous-hub/foodgram-project-react/actions/workflows/main.yml/badge.svg
+![Django-app workflow](https://github.com/virtuous-hub/foodgram-project-react/actions/workflows/main.yml/badge.svg)
 
 <h2>Описание</h2>
 
