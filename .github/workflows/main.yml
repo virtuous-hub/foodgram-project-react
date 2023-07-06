@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          context: /c/Dev/foodgram-project-react/backend/foodgram
+          context: backend/foodgram/foodgram
           tags: ${{ secrets.DOCKER_USERNAME }}/foodgram:latest
 
   deploy:
