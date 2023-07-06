@@ -8,7 +8,7 @@ SECRET_KEY = os.getenv(key='SECRET_KEY', default='12345')
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*', 'localhost', '51.250.3.91']
 

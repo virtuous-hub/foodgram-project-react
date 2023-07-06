@@ -13,7 +13,7 @@ services:
     command: -p 5433
 
   backend:
-    image: virtuous431/foodgram
+    build: ../backend/foodgram
     volumes:
       - ../static/:/app/static/
       - ../media/:/app/media/recipes/
@@ -24,7 +24,7 @@ services:
     restart: always
 
   frontend:
-    image: virtuous431/foodgram_frontend
+    build: ../frontend
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
