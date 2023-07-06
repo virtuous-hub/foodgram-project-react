@@ -6,11 +6,11 @@ services:
       - /var/lib/postgresql/data/
     env_file:
       - ./.env
-    expose:
-      - "5433"
-    ports:
-      - "5433:5433"
-    command: -p 5433
+    #expose:
+    #  - "5432"
+    #ports:
+    #  - "5432:5432"
+    #command: -p 5433
 
   backend:
     build: ../backend/foodgram
